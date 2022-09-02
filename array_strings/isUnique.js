@@ -9,12 +9,15 @@ const isUnique = (str)=>{
     return true;
   }
 
-  const sum = (arr)=>{
-    let s = 0;
-    for (const item of arr){
-      s += item;
+  const isUniqueBitMask = (str) =>{
+    let checker = 0;
+
+    for(const c of str){
+      const charIndex = c.charCodeAt(0) - 'a'.charCodeAt(0);
+      if((checker & (1<<charIndex)) !==0) return false;
+      checker |= (1<<charIndex)
     }
-    return s;
+    return true;
   }
   
  const testIsUnique = ()=>{
@@ -23,4 +26,12 @@ const isUnique = (str)=>{
   console.assert(isUnique('mustaf')===true);
  }
  
+ const testisUniqueBitMask = ()=>{
+  console.assert(isUniqueBitMask('abccc')===false);
+  console.assert(isUniqueBitMask('abc')===true);
+  console.assert(isUniqueBitMask('mustaf')===true);
+ }
+ 
+
 testIsUnique()
+testisUniqueBitMask()
