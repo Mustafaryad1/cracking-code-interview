@@ -28,7 +28,28 @@ const checkPermutationWithSort = (str1, str2)=>{
   return sortedStr1 === sortedStr2;
 }
 
+const checkPermutationUsingMap = (str1, str2) =>{
+  if(str1 === '' || str2 === '') return true;
+  if(str1.length !== str2.length) return false;
+  
+  const map = new Map();
 
+  for (const c of str1){
+    if(map[c]=== undefined){
+      map[c] = 1
+    }else map[c] +=1
+  }
+
+  for (const c of str2){
+    if(map[c] ===0 || map[c] === undefined) return false;
+    map[c] -=1;
+  }
+
+  return true;
+}
+
+
+console.log(checkPermutationUsingMap('hello','ohell')===true);
 
 console.log(checkPermutationWithSort('must','aaaa')===false)
 console.log(checkPermutationWithSort('must','')===true)
